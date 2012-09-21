@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script id="template" type="text/x-html-template">
+    <h1>
+        <span>foo: </span>{{foo}}
+    </h1>
+    <h2>
+        <span>bar: </span>{{bar}}
+    </h2>
+</script>
+
+<script id="template2" type="text/x-html-template">
+    <ul>
+        <% $.each(data, function(i, foo) {%>
+        <li>foo: {{foo}}</li>
+        <% }); %>
+    </ul>
+</script>
+
+<div id="test">
+
+</div>
+
+<div id="test2">
+
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="utemplate.js"></script>
+<script>
+    (function() {
+        var template = UTemplate($('#template').html()),
+            template2 = UTemplate($('#template2').html());
+
+        $('#test').html(template({foo: 'bar', bar: 'foo'}));
+
+        $('#test2').html(template2({data: ['foo', 'bar']}));
+
+    })()
+</script>
+</body>
+</html>
